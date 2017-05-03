@@ -1,5 +1,13 @@
 package common;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -40,7 +48,6 @@ public class BrowserHelper
 					driver = new FirefoxDriver();
 					break;
 				}
-			
 			}
 			else
 			{
@@ -51,7 +58,25 @@ public class BrowserHelper
 		{
 			e.printStackTrace();
 		}
+		if (!(driver == null))
+			driver.manage().window().maximize();
 		return driver;
 	}
+	
+	public static void SaveDriverScreenshot(WebDriver driver, String tcName)
+	{
+		try
+		{
+			File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			String dirName = TestConfig.testResultDir + tcName;
+			String fileName = dirName + "\\" + TestConfig.GetTimeStamp("yyyyMMddHHmmssSSS") + ".png";
+			Files.createDirectories(Paths.get(dirName));
+			FileUtils.copyFile(ss, new File(fileName));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
+	}
 }

@@ -15,8 +15,8 @@ public class MainClass
 		System.out.println(TestConfig.testConfigDir);
 		System.out.println(TestConfig.browserEnv);
 		System.out.println(TestConfig.driverPath);
-		// WebDriver driver = null;
-		// driver = BrowserHelper.LaunchBrowser(driver);
+		WebDriver driver = null;
+		driver = BrowserHelper.LaunchBrowser(driver);
 		ExcelHelper objExcel = new ExcelHelper();
 		objExcel.SetExcelHeader();
 		objExcel.SetExcelData("TC02_Mercury_Login_Failure");

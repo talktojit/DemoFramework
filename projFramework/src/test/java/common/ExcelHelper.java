@@ -25,7 +25,6 @@ public class ExcelHelper
 
 			XSSFRow row = sheet.getRow(0);
 			int colCount = row.getLastCellNum();
-			System.out.println("ColCount=" + colCount);
 			for (int j = 0; j < colCount; j++)
 			{
 				XSSFCell cell = row.getCell(j);
@@ -42,7 +41,6 @@ public class ExcelHelper
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	public void SetExcelData(String tcName)
@@ -73,7 +71,6 @@ public class ExcelHelper
 					}
 					listData.add(currRow);
 				}
-				
 			}
 			workbook.close();
 			fis.close();
@@ -83,13 +80,17 @@ public class ExcelHelper
 		{
 			e.printStackTrace();
 		}
-
 	}
 	
 	public String GetValue(int rowNum, String colName)
 	{
 		int colIndex = listHeader.indexOf(colName);
 		return listData.get(rowNum).get(colIndex);
+	}
+	
+	public void ClearExcelData()
+	{
+		listData.clear();
 	}
 
 }
